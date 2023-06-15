@@ -36,7 +36,7 @@ def destination_request(request, elevator_id: int):
         elevator.is_door_opened = False
         elevator.save()
 
-        return Response({"message": "Destination"})
+        return Response({"message": f"Elevator {elevator.pk} Reach To destination floor {floor}"})
 
     except Exception as e:
         return Response(status=status.HTTP_400_BAD_REQUEST, data={"message": str(e)})

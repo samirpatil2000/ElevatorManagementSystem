@@ -3,10 +3,11 @@ from django.db import models
 # Create your models here.
 from django.db.models import Func, F
 
+OPERATIONAL = 'operational'
+MAINTENANCE = 'maintenance'
 
 class Elevator(models.Model):
-    OPERATIONAL = 'operational'
-    MAINTENANCE = 'maintenance'
+
     STATUS_CHOICES = [
         (OPERATIONAL, 'Operational'),
         (MAINTENANCE, 'Maintenance'),
@@ -26,7 +27,7 @@ class Elevator(models.Model):
     direction = models.CharField(
         max_length=20,
         choices=DIRECTION_CHOICES,
-        default="Up")
+        default="UP")
 
     requests = models.ManyToManyField('elevator.Request', related_name='elevators', blank=True)
 
@@ -44,7 +45,7 @@ class Elevator(models.Model):
 
     @classmethod
     def get_nearest_elevator(cls, floor: int):
-        return cls.objects.annotate(diff=Func(F('current_floor') - floor, function='ABS')).order_by('diff').first()
+        return cls.objects.filter(status=OPERATIONAL).annotate(diff=Func(F('current_floor') - floor, function='ABS')).order_by('diff').first()
 
 
 class Request(models.Model):
