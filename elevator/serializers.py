@@ -3,10 +3,10 @@ from .models import Elevator, Request
 
 
 class RequestSerializer(serializers.ModelSerializer):
-    is_completed = serializers.BooleanField(read_only=True)
+    timestamp = serializers.DateTimeField(read_only=True)
     class Meta:
         model = Request
-        fields = ('floor', 'timestamp', 'is_completed')
+        fields = ('pk', 'floor', 'timestamp', 'is_completed')
 
 
 class ElevatorSerializer(serializers.ModelSerializer):
