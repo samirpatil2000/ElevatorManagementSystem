@@ -62,7 +62,11 @@ python manage.py runserver
 The project will be available at **127.0.0.1:8000**.
    
 ### SEQUENCE DIAGRAM
+![Screenshot 2023-06-16 at 6 51 12 PM](https://github.com/samirpatil2000/ElevatorManagementSystem/assets/55244065/b152309a-e8fa-47e9-b0f4-9b15572b9a73)
 
+### DataBase Schema
+
+![Screenshot 2023-06-16 at 6 58 47 PM](https://github.com/samirpatil2000/ElevatorManagementSystem/assets/55244065/22912203-d544-42d3-bd08-57e8f202f576)
 
 ## API Endpoints
 
