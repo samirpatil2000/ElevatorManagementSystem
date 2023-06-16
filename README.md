@@ -13,9 +13,6 @@ The Elevator Management System is a Django project designed to manage the operat
 
 ## Installation
 
-## Installation
-
-
 [![Python Version](https://img.shields.io/badge/python-3.8.1-brightgreen.svg)](https://python.org)
 [![Django Version](https://img.shields.io/badge/django-4.0.6-brightgreen.svg)](https://djangoproject.com)
 
