@@ -32,6 +32,11 @@ def destination_request(request, elevator_id: int):
 
     try:
 
+        if elevator.current_floor > payload.get('floor'):
+            elevator.direction = "DOWN"
+        else:
+            elevator.direction = "UP"
+
         elevator.current_floor = payload.get('floor')
         elevator.is_door_opened = False
         elevator.save()

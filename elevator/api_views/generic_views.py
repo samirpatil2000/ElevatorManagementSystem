@@ -31,8 +31,16 @@ class RequestViewSet(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
 
-            floor = serializer.data.get("floor")
-            elevator = Elevator.get_nearest_elevator(floor)
+            floor_requested_from = serializer.data.get("floor")
+            elevator = Elevator.get_nearest_elevator(floor_requested_from)
+
+            if elevator.current_floor > floor_requested_from:
+                elevator.direction = "DOWN"
+            else:
+                elevator.direction = "UP"
+
+            elevator.current_floor = floor_requested_from
+
             elevator.is_door_opened = True
             elevator.save()
             elevator.requests.add(serializer.instance.id)
@@ -45,6 +53,8 @@ class RequestViewSet(viewsets.ModelViewSet):
         except Exception as e:
 
             return Response(
-                data={"message": str(e)},
+                data={
+                    "message": str(e)
+                },
                 status=status.HTTP_400_BAD_REQUEST
             )
